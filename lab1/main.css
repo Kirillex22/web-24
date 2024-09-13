@@ -1,9 +1,10 @@
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: aqua;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(255, 255, 255);
     font-size: 24px;
-    background: linear-gradient(to right, #5900ff, #a200ff);
+    background: linear-gradient(to right, #0c4e10, #0d880d, #2e7434, #1a6944);
     line-height: 1.5;
+    opacity: 1;
 }
 
 ul#menu li {
@@ -55,4 +56,5 @@ TH {
 
 TABLE {
     border-collapse: collapse;
+    width: 100%;
 }

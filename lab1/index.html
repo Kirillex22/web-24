@@ -6,76 +6,58 @@
     <link rel="stylesheet" href="main.css">
     <title>Меню</title>
     <style>
-        body {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            color: rgb(255, 255, 255);
-            font-size: 24px;
-            background: linear-gradient(to right, #0c4e10, #0d880d, #2e7434, #1a6944);
-            line-height: 1.5;
-            opacity: 1;
-            text-align: center;
+        TD,
+        TH {
+            padding: 3px;
+            border: 3px black;
         }
 
-        .menu-bar {
-            border-radius: 25px;
-            height: -webkit-fit-content;
-            height: -moz-fit-content;
-            height: fit-content;
-            display: inline-flex;
-            background-color: rgba(0, 0, 0, 0.4);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            align-items: center;
-            padding: 0 10px;
-            margin: 50px 0 0 0;
-        }
-
-        .menu-bar li {
-            list-style: none;
-            color: rgb(0, 0, 0);
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-weight: bold;
-            padding: 12px 16px;
-            margin: 0 8px;
-            position: relative;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .menu-bar li::before {
-            content: " ";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
+        TABLE {
+            border-collapse: collapse;
             width: 100%;
-            z-index: -1;
-            transition: 0.2s;
-            border-radius: 15px;
-        }
-
-        .menu-bar li:hover {
-            color: rgb(0, 0, 0);
-        }
-
-        .menu-bar li:hover::before {
-            background: linear-gradient(to bottom, #e8edec, #d2d1d3);
-            box-shadow: 0px 3px 20px 0px black;
-            transform: scale(1.2);
         }
     </style>
 </head>
 
 <body>
-    <h1>Релиз линейки NVIDIA 700X</h1>
-    <nav>
-        <ul class="menu-bar">
-            <li><a href="page1.html">GTX 780</a></li>
-            <li><a href="page2.html">О компании NVIDIA</a></li>
-            <li><a href="page3.html">Модельный ряд</a></li>
-            <li><a href="page4.html">Сравнение с прошлым поколением</a></li>
-        </ul>
-    </nav>
+    <h1 style="background-color: #77b900;">Релиз линейки NVIDIA 700X</h1>
+    <div style="text-align: center; background-color: black">
+        <nav>
+            <ul class="menu-bar">
+                <li><a href="index.html">Главная страница</a></li>
+                <li><a href="page1.html">GTX 780</a></li>
+                <li><a href="page2.html">О компании</a></li>
+                <li><a href="page3.html">Модельный ряд</a></li>
+                <li><a href="page4.html">Сравнение с прошлым поколением</a></li>
+            </ul>
+        </nav>
+        <br>
+    </div>
+    <br>
+    <br>
+    <table style="text-align: center;">
+        <colgroup>
+            <col style="width: 33%; text-align: center;">
+            <col style="width: 33%; text-align: center;">
+            <col style="width: 33%; text-align: center;">
+        </colgroup>
+        <tr>
+            <td style="font-size: 50px; color: #77b900;">GTX 770</td>
+            <td style="font-size: 50px; color: #77b900;">GTX 780</td>
+            <td style="font-size: 50px; color: #77b900;">GTX TITAN Z</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="preview2.jpg" alt="gtx titan z" />
+            </td>
+            <td><img src="preview.jpg" alt="gtx780" />
+            </td>
+            <td>
+                <img src="preview1.jpg" alt="gtx770" />
+            </td>
+        </tr>
+    </table>
+
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: rgb(255, 255, 255);
-    font-size: 24px;
-    background: linear-gradient(to right, #0c4e10, #0d880d, #2e7434, #1a6944);
+    font-size: 30px;
+    background: black;
     line-height: 1.5;
     opacity: 1;
 }
@@ -16,31 +16,35 @@ h1 {
     text-align: center;
 }
 
-a:link {
-    color: rgb(255, 0, 191);
-    text-decoration: none
-}
-
-a:visited {
-    color: rgb(192, 246, 255);
-    text-decoration: none
-}
-
-a:hover {
-    color: rgba(255, 0, 200, 0.63);
-    text-decoration: underline
-}
-
-a:active {
-    color: rgba(255, 0, 0, 0);
-    text-decoration: underline
-}
-
 nav ul {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+li {
+    font-size: 35px;
+}
+
+a:link {
+    color: rgb(255, 255, 255);
+    text-decoration: none
+}
+
+a:visited {
+    color: rgb(255, 255, 255);
+    text-decoration: none
+}
+
+a:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: underline
+}
+
+a:active {
+    color: rgba(0, 0, 0, 0);
+    text-decoration: underline
 }
 
 nav ul li {
@@ -51,10 +55,59 @@ nav ul li {
 TD,
 TH {
     padding: 3px;
-    border: 1px solid black;
+    border: 3px solid #77b900;
 }
 
 TABLE {
     border-collapse: collapse;
     width: 100%;
+}
+
+.menu-bar {
+    border-radius: 100px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: inline-flex;
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    padding: 0 10px;
+    margin: 50px 0 0 0;
+}
+
+.menu-bar li {
+    list-style: none;
+    color: rgb(0, 0, 0);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    padding: 12px 16px;
+    margin: 0 8px;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.menu-bar li::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transition: 0.2s;
+    border-radius: 15px;
+}
+
+.menu-bar li:hover {
+    color: rgb(0, 0, 0);
+}
+
+.menu-bar li:hover::before {
+    background-color: #77b900;
+    box-shadow: 0px 3px 20px 0px black;
+    transform: scale(1.05);
 }

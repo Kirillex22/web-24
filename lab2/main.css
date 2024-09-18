@@ -159,3 +159,14 @@ label {
     font-size: 25px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+button {
+    width: 250px;
+    height: 40px;
+    padding: 6px 10px 5px 10px;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-style: inherit;
+    background-color: #77b900;
+    color: white;
+}

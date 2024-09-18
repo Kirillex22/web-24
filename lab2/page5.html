@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Страница 5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <ul class="menu-bar">
+        <li><a href="index.html">Главная страница</a></li>
+        <li><a href="page1.html">GTX 780</a></li>
+        <li><a href="page2.html">О компании</a></li>
+        <li><a href="page3.html">Модельный ряд</a></li>
+        <li><a href="page4.html">Сравнение с прошлым поколением</a></li>
+        <li><a href="page5.html">Предзаказ</a></li>
+    </ul>
+    <h1>Оформление предзаказа</h1>
+    <img src="src/offer.jpg" alt="offer" style="float:right; margin-right:10px; margin-top: 20px;" width="1024"
+        height="768" />
+    <form method="get" action="successful_order.html">
+        <fieldset style="border: none;">
+            <p>
+                <label for="name">Имя</label><br>
+                <input type="text" name="name" placeholder="Ваше имя" autofocus id="name" required id="name" />
+            </p>
+            <p>
+                <label for="first_name">Фамилия</label><br>
+                <input type="text" name="first_name" placeholder="Ваша фамилия" required id="first_name" />
+            </p>
+            <p>
+                <label for="born_date">Дата рождения</label><br>
+                <input type="date" name="born_date" placeholder="Дата рождения" required id="born_date" />
+            </p>
+            <p>
+                <label for="email">Электронная почта</label><br>
+                <input type="email" name="email" placeholder="Ваш email" required id="email" />
+            </p>
+            <p>
+                <label for="phone">Телефонный номер</label><br>
+                <input type="tel" name="phone" placeholder="Ваш номер телефона" disabled />
+            </p>
+            <p>
+                <label for="address">Адрес доставки</label><br>
+                <textarea name="address" placeholder="Адрес для доставки" required id="address"
+                    style="resize: none;"></textarea>
+            </p>
+            <p>
+                <label for="select">Модель для предзаказа</label><br>
+                <select name="select" required id="select">
+                    <option value="GTX 760 2gb">GTX 760 2gb</option>
+                    <option value="GTX 770 2gb">GTX 770 2gb</option>
+                    <option value="GTX 770 4gb">GTX 770 4gb</option>
+                    <option value="GTX 780 3gb">GTX 780 3gb</option>
+                    <option value="GTX 780Ti 6gb">GTX 780Ti 6gb</option>
+                    <option value="GTX TITAN Z 6gb">GTX TITAN Z 6gb</option>
+                </select>
+            </p>
+            <p>
+                <label for="colorChoice">Цвет</label><br>
+                <input type="text" list="colors" id="colorChoice" name="color" value="NVIDIA Silver" readonly />
+            </p>
+
+            <label for="checkbox">Согласен с обработкой персональных данных</label>
+            <input type="checkbox" class="checkbox" id="checkbox" required id="checkbox">
+
+            <p><input type="submit" name="send" /></p>
+        </fieldset>
+
+        <datalist id="colors">
+            <option value="NVIDIA Silver" label="silver">
+            <option value="NVIDIA Black" label="black">
+        </datalist>
+    </form>
+</body>
+
+</html>

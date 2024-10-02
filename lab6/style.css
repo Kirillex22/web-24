@@ -1,6 +1,11 @@
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background: black;
+}
+
+.row-container {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: black;
     display: flex;
     flex-direction: row;
 }
@@ -11,6 +16,22 @@ body {
     color: white;
     padding: 1em;
     line-height: 1.5;
+    width: 50%;
+    background: #444444;
+    border: #77b900 solid;
+    height: auto;
+}
+
+.fixed-size-item {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    padding: 1em;
+    line-height: 1.5;
+    width: 50%;
+    background: #444444;
+    border: #77b900 solid;
+    height: 300px;
 }
 
 button{
@@ -39,8 +60,15 @@ li{
     background: #77b900;
     list-style-type: none;
     width: 100px;
+    margin-left: auto;
+    margin-right: auto;
     height: 100px;
-    text-align: center;
-    margin: 5px;
     border: #444444 solid;
+}
+
+.menu-button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    background: #77b900;
+    color: white;
 }

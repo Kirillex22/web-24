@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Очередь в JavaScript</title>
+</head>
+
+<body>
+<div style="text-align: center;">
+    <br>
+    <br>
+    <button id="createQueue" class="menu-button">Создать очередь</button>
+    <button id="createStack" class="menu-button">Создать стек</button>
+    <br>
+    <br>
+</div>
+
+<div class="row-container">
+    <div class="fixed-size-item">
+        <h1 id="name">Управление очередью</h1>
+        <input type="text" id="inputValue" placeholder="Значение">
+        <button id="enqueueBtn">Добавить</button>
+        <button id="dequeueBtn">Удалить</button>
+    </div>
+
+    <div class="item">
+        <h1>Визуализация</h1>
+        <ul id="queueList" class="my-ul"></ul>
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

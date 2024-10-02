@@ -1,18 +1,6 @@
-class Queue {
+class Base{
     constructor() {
         this.items = [];
-    }
-
-    enqueue(element) {
-        this.items.push(element);
-        this.render();
-    }
-
-    dequeue() {
-        if (this.items.length > 0) {
-            this.items.shift();
-            this.render();
-        }
     }
 
     render() {
@@ -25,17 +13,59 @@ class Queue {
         });
     }
 }
+class Queue extends Base{
+    push(element) {
+        if (!isNaN(parseInt(element))){
+            this.items.push(element);
+            this.render();
+        }
+    }
 
-const queue = new Queue();
+    take() {
+        if (this.items.length > 0) {
+            this.items.shift();
+            this.render();
+        }
+    }
+}
+
+class Stack extends Base{
+    push(element) {
+        if (!isNaN(parseInt(element))){
+            this.items.unshift(element);
+            this.render();
+        }
+    }
+
+    take() {
+        if (this.items.length > 0) {
+            this.items.shift();
+            this.render();
+        }
+    }
+
+}
+
+let struct = new Queue();
 
 document.getElementById('enqueueBtn').addEventListener('click', () => {
     const inputValue = document.getElementById('inputValue').value;
     if (inputValue) {
-        queue.enqueue(inputValue);
+        struct.push(inputValue);
         document.getElementById('inputValue').value = '';
     }
 });
 
 document.getElementById('dequeueBtn').addEventListener('click', () => {
-    queue.dequeue();
+    struct.take();
+});
+
+document.getElementById('createQueue').addEventListener('click', () => {
+    struct = new Queue();
+    document.getElementById('name').textContent='Управление очередью';
+});
+
+document.getElementById('createStack').addEventListener('click', () => {
+    struct = new Stack();
+    document.getElementById('name').textContent='Управление стеком';
 });

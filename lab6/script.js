@@ -1,4 +1,4 @@
-class Base{
+class Base {
     constructor() {
         this.items = [];
     }
@@ -13,9 +13,10 @@ class Base{
         });
     }
 }
-class Queue extends Base{
+
+class Queue extends Base {
     push(element) {
-        if (!isNaN(parseInt(element))){
+        if (!isNaN(parseInt(element))) {
             this.items.push(element);
             this.render();
         }
@@ -29,9 +30,9 @@ class Queue extends Base{
     }
 }
 
-class Stack extends Base{
+class Stack extends Base {
     push(element) {
-        if (!isNaN(parseInt(element))){
+        if (!isNaN(parseInt(element))) {
             this.items.unshift(element);
             this.render();
         }
@@ -62,10 +63,10 @@ document.getElementById('dequeueBtn').addEventListener('click', () => {
 
 document.getElementById('createQueue').addEventListener('click', () => {
     struct = new Queue();
-    document.getElementById('name').textContent='Управление очередью';
+    document.getElementById('name').textContent = 'Управление очередью';
 });
 
 document.getElementById('createStack').addEventListener('click', () => {
     struct = new Stack();
-    document.getElementById('name').textContent='Управление стеком';
+    document.getElementById('name').textContent = 'Управление стеком';
 });

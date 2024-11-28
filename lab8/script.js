@@ -17,14 +17,17 @@ const employeesData = {
     "subordinates": [
         {
             "name": employeesNames[1],
+            "parent": employeesNames[0],
             "position": "Директор по продажам",
             "subordinates": [
                 {
                     "name": employeesNames[2],
+                    "parent": employeesNames[1],
                     "position": "Менеджер по продажам",
                     "subordinates": [
                         {
                             "name": employeesNames[3],
+                            "parent": employeesNames[2],
                             "position": "Агент по продажам",
                             "subordinates": []
                         }
@@ -32,10 +35,12 @@ const employeesData = {
                 },
                 {
                     "name": employeesNames[4],
+                    "parent": employeesNames[1],
                     "position": "Менеджер по продажам",
                     "subordinates": [
                         {
                             "name": employeesNames[5],
+                            "parent": employeesNames[4],
                             "position": "Агент по продажам",
                             "subordinates": []
                         }
@@ -45,10 +50,12 @@ const employeesData = {
         },
         {
             "name": employeesNames[6],
+            "parent": employeesNames[0],
             "position": "Директор по маркетингу",
             "subordinates": [
                 {
                     "name": employeesNames[7],
+                    "parent": employeesNames[6],
                     "position": "Маркетолог",
                     "subordinates": []
                 }
@@ -56,10 +63,12 @@ const employeesData = {
         },
         {
             "name": employeesNames[8],
+            "parent": employeesNames[0],
             "position": "Главный бухгалтер",
             "subordinates": [
                 {
                     "name": employeesNames[9],
+                    "parent": employeesNames[8],
                     "position": "Бухгалтер",
                     "subordinates": []
                 }
@@ -74,6 +83,7 @@ function createTree(data) {
     ul.className = 'json-tree'
     const li = document.createElement('li');
     const span = document.createElement('span');
+    span.id = data.name;
     span.textContent = `${data.name} - ${data.position}`;
     li.appendChild(span);
 
@@ -95,6 +105,7 @@ function createSubordinatesTree(subordinates) {
         const li = document.createElement('li');
         li.className = 'json-tree'
         const span = document.createElement('span');
+        span.id = subordinate.name;
         span.textContent = `${subordinate.name} - ${subordinate.position}`;
         li.appendChild(span);
 
@@ -110,6 +121,15 @@ function createSubordinatesTree(subordinates) {
     return ul;
 }
 
+function upToParent(node) {
+    nodeView = document.getElementById(node.name);
+    nodeView.click();
+    if (node.parent) {
+        upToParent(findEmployeeByName(employeesData, node.parent.trim().toLowerCase()));
+    }
+    return null;
+}
+
 function searchEmployee() {
     const name = document.getElementById('search').value.trim().toLowerCase();
     for (let idx in employeesNames) {
@@ -117,14 +137,14 @@ function searchEmployee() {
         li.className = 'lst-default'
     }
     if (name) {
-        const foundEmployee = findEmployeeByNameOrPosition(employeesData, name);
+        const foundEmployee = findEmployeeByName(employeesData, name);
         if (foundEmployee) {
             const name = foundEmployee?.name.trim().toLowerCase();
             const currentLi = document.getElementById(name);
             currentLi.addEventListener('click', function () {
-                const treeContainer = document.getElementById('json-tree');
-                treeContainer.innerHTML = '';
-                treeContainer.appendChild(createTree(foundEmployee));
+                upToParent(foundEmployee);
+                nodeView = document.getElementById(foundEmployee.name);
+                nodeView.click();
             });
             currentLi.classList.add('selected')
 
@@ -134,14 +154,14 @@ function searchEmployee() {
     }
 }
 
-function findEmployeeByNameOrPosition(data, name) {
+function findEmployeeByName(data, name) {
     if (data.name.toLowerCase().includes(name)) {
         return data;
     }
 
-    if (data.subordinates) {
+    else if (data.subordinates) {
         for (let subordinate of data.subordinates) {
-            const result = findEmployeeByNameOrPosition(subordinate, name);
+            const result = findEmployeeByName(subordinate, name);
             if (result) return result;
         }
     }
@@ -164,3 +184,5 @@ for (let idx in employeesNames) {
     ul.appendChild(li)
 }
 document.getElementById('lst').appendChild(ul)
+
+refresh();

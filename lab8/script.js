@@ -131,6 +131,7 @@ function upToParent(node) {
 }
 
 function searchEmployee() {
+    refresh();
     const name = document.getElementById('search').value.trim().toLowerCase();
     for (let idx in employeesNames) {
         const li = document.getElementById(employeesNames[idx].trim().toLowerCase())
@@ -144,6 +145,7 @@ function searchEmployee() {
             currentLi.addEventListener('click', function () {
                 upToParent(foundEmployee);
                 nodeView = document.getElementById(foundEmployee.name);
+                nodeView.classList.add('selected');
                 nodeView.click();
             });
             currentLi.classList.add('selected')

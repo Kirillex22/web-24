@@ -83,6 +83,10 @@ h1 {
   width: auto;
 }
 
+.json-tree li span.selected {
+  background: #ff0000;
+}
+
 .lst-default ul {
   display: none;
   margin-top: 1px;

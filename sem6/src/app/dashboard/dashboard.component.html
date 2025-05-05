@@ -1,10 +1,10 @@
-<h2>Top Heroes</h2>
-<div class="heroes-menu">
-  <a
-    *ngFor="let hero of heroes"
-    routerLink="/detail/{{hero.id}}"
-  >
-    {{hero.name}}
+<h3>Top Heroes</h3>
+<div class="grid grid-cols-2 gap-4">
+  <a *ngFor="let hero of heroes$ | async"
+     routerLink="/detail/{{hero.id}}"
+     class="dashboard-item">
+    {{ hero.name }}
   </a>
 </div>
+
 <app-hero-search></app-hero-search>

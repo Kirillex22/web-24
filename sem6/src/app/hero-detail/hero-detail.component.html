@@ -1,14 +1,27 @@
-<div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div>id: {{hero.id}}</div>
-  <div>
+<div *ngIf="hero$ | async as hero">
+  <h2>{{ form?.get('name')?.value | uppercase }} Details</h2>
+  <div>id: {{ hero.id }}</div>
+
+  <form [formGroup]="form">
     <label for="hero-name">Hero name: </label>
-    <input
-      id="hero-name"
-      [(ngModel)]="hero.name"
-      placeholder="name"
-    />
-  </div>
+    <input id="hero-name" formControlName="name" placeholder="name" />
+    <br>
+    <label for="hero-age">Hero age: </label>
+    <input id="hero-age" formControlName="age" placeholder="age" />
+    <br>
+    <label for="hero-gender">Hero gender: </label>
+    <input id="hero-gender" formControlName="gender" placeholder="gender" />
+    <br>
+    <label for="hero-ability">Hero ability: </label>
+    <input id="hero-ability" formControlName="ability" placeholder="ability" />
+    <br>
+    <label for="hero-race">Hero race: </label>
+    <input id="hero-race" formControlName="race" placeholder="race" />
+    <br>
+    <label for="hero-color">Hero color: </label>
+    <input id="hero-color" formControlName="color" placeholder="color" />
+  </form>
+
+  <button type="button" (click)="goBack()">go back</button>
+  <button type="button" (click)="save(hero)">save</button>
 </div>
-<button type="button" (click)="goBack()">go back</button>
-<button type="button" (click)="save()">save</button>

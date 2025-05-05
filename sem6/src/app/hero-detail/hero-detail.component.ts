@@ -1,50 +1,67 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Hero } from '../Hero';
-import {UpperCasePipe} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, UpperCasePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../hero.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { switchMap, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
+  standalone: true,
   imports: [
+    CommonModule,
+    ReactiveFormsModule,
     UpperCasePipe,
-    FormsModule,
-    CommonModule
   ],
   templateUrl: './hero-detail.component.html',
   styleUrl: './hero-detail.component.css',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroDetailComponent {
+  hero$!: Observable<Hero>;
+  form!: FormGroup;
+
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
+    private location: Location,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.getHero();
+    this.hero$ = this.route.paramMap.pipe(
+      switchMap(params => {
+        const id = Number(params.get('id'));
+        return this.heroService.getHero(id);
+      }),
+      tap(hero => {
+        this.form = this.fb.group({
+          name: [hero.name],
+          age: [hero.age],
+          gender: [hero.gender],
+          ability: [hero.ability],
+          race: [hero.race],
+          color: [hero.color],
+        });
+      })
+    );
   }
 
-  save(): void {
-    if (this.hero) {
-      this.heroService.updateHero(this.hero)
+  save(hero: Hero): void {
+    if (this.form.valid) {
+      const updatedHero: Hero = {
+        ...hero,
+        ...this.form.value,
+      };
+      this.heroService.updateHero(updatedHero)
         .subscribe(() => this.goBack());
     }
-  }
-
-  getHero(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
   }
 
   goBack(): void {
     this.location.back();
   }
-
-  @Input() hero?: Hero;
 }

@@ -6,7 +6,7 @@ import { HeroService } from '../hero.service';
 import { Hero } from '../Hero';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { RouterOutlet, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-heroes',
@@ -25,6 +25,7 @@ import { Observable } from 'rxjs';
 })
 export class HeroesComponent implements OnInit {
   heroes$!: Observable<Hero[]>;
+  private subs = new Subscription();
 
   constructor(private heroService: HeroService) {}
 
@@ -34,17 +35,22 @@ export class HeroesComponent implements OnInit {
 
   add(name: string): void {
     name = name.trim();
-    if (!name) {
-      return;
-    }
-    this.heroService.addHero({ name } as Hero).subscribe((hero) => {
-      this.heroes$ = this.heroService.getHeroes(); // обновляем список после добавления
+    if (!name) return;
+
+    const sub = this.heroService.addHero({ name } as Hero).subscribe(() => {
+      this.heroes$ = this.heroService.getHeroes();
     });
+    this.subs.add(sub);
   }
 
   delete(hero: Hero): void {
-    this.heroService.deleteHero(hero.id).subscribe(() => {
-      this.heroes$ = this.heroService.getHeroes(); // обновляем список после удаления
+    const sub = this.heroService.deleteHero(hero.id).subscribe(() => {
+      this.heroes$ = this.heroService.getHeroes();
     });
+    this.subs.add(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

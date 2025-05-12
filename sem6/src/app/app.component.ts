@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import {HeroesComponent} from './heroes/heroes.component';
 import {MessagesComponent} from './messages/messages.component';
+import {HeaderComponent} from './header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import {MessagesComponent} from './messages/messages.component';
     HeroesComponent,
     MessagesComponent,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    HeaderComponent
   ],
   styleUrl: './app.component.css'
 })

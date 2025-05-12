@@ -1,0 +1,10 @@
+<div class="header">
+  <ng-container *ngIf="!auth.isAuthenticated(); else loggedIn">
+    <button mat-button (click)="openLogin()">Войти</button>
+    <button mat-button (click)="openRegister()">Авторизоваться</button>
+  </ng-container>
+  <ng-template #loggedIn>
+    <span>{{ auth.currentUser }}</span>
+    <button mat-button (click)="logout()">Выйти</button>
+  </ng-template>
+</div>

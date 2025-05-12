@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Регистрация</h1>
+<div mat-dialog-content>
+  <mat-form-field><input matInput placeholder="Логин" [(ngModel)]="login"></mat-form-field>
+  <mat-form-field><input matInput placeholder="Пароль" [(ngModel)]="password1" type="password"></mat-form-field>
+  <mat-form-field><input matInput placeholder="Повторите пароль" [(ngModel)]="password2" type="password"></mat-form-field>
+  <div *ngIf="error" style="color:red;">{{ error }}</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="submit()">Зарегистрироваться</button>
+  <button mat-button (click)="dialogRef.close()">Отмена</button>
+</div>

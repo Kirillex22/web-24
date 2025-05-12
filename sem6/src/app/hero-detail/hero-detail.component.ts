@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { HeroService } from '../hero.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { switchMap, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
@@ -23,6 +23,7 @@ import { Observable } from 'rxjs';
 export class HeroDetailComponent {
   hero$!: Observable<Hero>;
   form!: FormGroup;
+  private subscriptions = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -56,12 +57,17 @@ export class HeroDetailComponent {
         ...hero,
         ...this.form.value,
       };
-      this.heroService.updateHero(updatedHero)
+      const sub = this.heroService.updateHero(updatedHero)
         .subscribe(() => this.goBack());
+      this.subscriptions.add(sub);
     }
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

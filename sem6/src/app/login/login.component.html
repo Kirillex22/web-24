@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Вход</h1>
+<div mat-dialog-content>
+  <mat-form-field><input matInput placeholder="Логин" [(ngModel)]="login"></mat-form-field>
+  <mat-form-field><input matInput placeholder="Пароль" [(ngModel)]="password" type="password"></mat-form-field>
+  <div *ngIf="error" style="color:red;">Неверный логин или пароль</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="submit()">Войти</button>
+  <button mat-button (click)="dialogRef.close()">Отмена</button>
+</div>
